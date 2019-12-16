@@ -1,28 +1,53 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="game">
+        <StartMenu v-if="this.state === 'NEW_GAME'"></StartMenu>
+        <NameInsertion v-else-if="this.state === 'INSERTING_NAMES'"/>
+        <Game v-else-if="this.state === 'P_TURN'"/>
+        <p v-else> hallo</p>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import StartMenu from "./components/StartMenu"
+    import Vue from "vue"
+    import NameInsertion from "@/components/NameInsertion";
+    import Game from "@/components/Game";
+    export default {
+        name: 'App',
+        components: {
+            Game,
+            NameInsertion,
+            StartMenu
+        },
+        methods: {
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+        },
+        data () {
+            return {
+                desk: {
+                    sets: [],
+                    players: []
+                },
+                state: {}
+            }
+        },
+        created() {
+            this.$options.sockets.onmessage = (message) => {
+                if (typeof message.data === "string") {
+                    this.desk = JSON.parse(message.data).desk;
+                    this.state = JSON.parse(message.data).state;
+                }
+                console.log(this.$socket.readyState)
+            };
+            this.$socket.send(JSON.stringify({type: 'json'}))
+        },
+
+    }
+
+
+
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped  lang="css"  >
+    @import './css/rummy.css';
 </style>
