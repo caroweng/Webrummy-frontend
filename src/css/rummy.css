@@ -30,7 +30,7 @@
 }
 
 .sectionUserBoard {
-    margin-top: 90px !important;
+    margin-top: 25px !important;
 }
 
 .tiles {
@@ -102,5 +102,13 @@ a {
 
 .alreadyAddedPlayers {
     font-family: "Lucida Grande", Helvetica, sans-serif !important;
+}
 
+.userName {
+    color: white !important;
+    padding: 10px;
+}
+
+.authCard {
+    margin-top: 30px!important;
 }

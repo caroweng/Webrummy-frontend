@@ -5,10 +5,18 @@ import VueRouter from 'vue-router';
 import VueNativeSock from 'vue-native-websocket'
 import "bootstrap/dist/css/bootstrap.min.css"
 import App from './App.vue'
-import StartMenu from "@/components/StartMenu";
+import Rules from "@/components/Rules";
+import StateComponent from "@/components/StateComponent";
+import './registerServiceWorker'
+import * as firebase from "firebase";
+import Login from "@/components/authentification/Login";
+import Register from "@/components/authentification/Register";
+import Dashboard from "@/components/authentification/InfoModal";
+import store from "./store";
 
-Vue.config.productionTip = false
-Vue.config.devtools = true
+
+Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 Vue.use(VueRouter);
 Vue.use(VueNativeSock, 'ws://localhost:9000/socket', {
@@ -19,8 +27,11 @@ Vue.use(VueNativeSock, 'ws://localhost:9000/socket', {
 
 const routes = [
   // {path: '/', component: Game },
-  {path: '/rummy', component: StartMenu },
-  // {path: '/rules', component: Rules }
+  {path: '/', component: StateComponent },
+  {path: '/rules', component: Rules },
+  {path: '/login', name: 'Login', component: Login},
+  {path: '/register', name: 'Register', component: Register},
+  {path: '/dashboard', name: 'Dashboard', component: Dashboard}
 ];
 
 const router = new VueRouter({
@@ -30,5 +41,22 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App),
-  router: router
-}).$mount('#app')
+  router: router,
+  store
+}).$mount('#app');
+
+const firebaseConfig = {
+  apiKey: "AIzaSyANMAoY-smVMDj5AJJGJYMD6_97FdmEtWM",
+  authDomain: "htwg-webtech-rummy.firebaseapp.com",
+  databaseURL: "https://htwg-webtech-rummy.firebaseio.com",
+  projectId: "htwg-webtech-rummy",
+  storageBucket: "htwg-webtech-rummy.appspot.com",
+  messagingSenderId: "206658326580",
+  appId: "1:206658326580:web:4e6a7faf153d80f0243a61"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+});

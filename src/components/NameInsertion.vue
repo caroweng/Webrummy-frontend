@@ -1,5 +1,5 @@
 <template>
-    <div class="insertingNames"> 
+    <div class="insertingNames section">
          <h1>Insert Names</h1>
          <br/>
          <div class="insertingNamesInputs">
@@ -9,13 +9,19 @@
          <br/>
          <br/>
          <div class="buttonBar">
+             <input type="submit" value="Undo" class="btn btn-light button" v-on:click="callRummyController('z')"/>
+             <input type="submit" value="Redo" class="btn btn-light button" v-on:click="callRummyController('r')"/>
              <input type="submit" value="Start game" id="startGame" class="btn btn-light button" v-on:click="startGame"/>
-             <input type="submit" value="Undo" class="btn btn-light button"/>
-             <input type="submit" value="Redo" class="btn btn-light button"/>
          </div>
-         <br/><br/>
-         <alert class="alert alert-warning" id="notEnoughPlayerAlert" role="alert" text="Not enough players" v-if="!enoughPlayers">Not enough players!</alert>
+        <br v-if="!enoughPlayers"/>
+        <div v-if="!enoughPlayers" class="alert alert-danger alert-dismissible fade show" role="alert">
+            Not enough players!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <br/>
+        <p v-if="desk.players.length >= 1">Added Players:</p>
         <div v-for="player in desk.players">
            <p class="alreadyAddedPlayers" v-text="player.name"></p>
         </div>
@@ -26,12 +32,14 @@
 
     export default {
         name: "NameInsertion",
+        props: {
+          desk:  {
+              sets: [],
+              players: []
+          },
+        },
         data () {
             return {
-                desk: {
-                    sets: [],
-                    players: []
-                },
                 enoughPlayers: Boolean
             }
         },
@@ -53,17 +61,7 @@
             callRummyController: function (param) {
                 this.$socket.send(JSON.stringify({action: "callRummyController", param: param}));
             }
-
-        },
-        created() {
-            this.enoughPlayers = true;
-            this.$options.sockets.onmessage = (message) => {
-                if (typeof message.data === "string") {
-                    this.desk = JSON.parse(message.data).desk;
-                }
-            };
-            this.$socket.send(JSON.stringify({type: 'json'}))
-        },
+        }
     };
 
 </script>

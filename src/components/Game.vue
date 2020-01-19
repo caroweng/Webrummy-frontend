@@ -1,9 +1,9 @@
 <template>
     <div>
         <NavBar/>
-        <Info/>
-        <UserBoard/>
-        <Table/>
+        <Info :desk="desk"/>
+        <UserBoard :desk="desk"/>
+        <Table :desk="desk"/>
     </div>
 </template>
 
@@ -22,29 +22,15 @@
             Table
         },
         props: {
-        },
-        data () {
-            return {
-                desk: {
-                    sets: [],
-                    players: []
-                }
+            desk: {
+                sets: [],
+                players: []
             }
         },
         methods: {
             callRummyController: function (param) {
                 this.$socket.send(JSON.stringify({action: "callRummyController", param: param}));
             }
-
-        },
-        created() {
-            this.enoughPlayers = true;
-            this.$options.sockets.onmessage = (message) => {
-                if (typeof message.data === "string") {
-                    this.desk = JSON.parse(message.data).desk;
-                }
-            };
-            this.$socket.send(JSON.stringify({type: 'json'}))
         },
     };
 
