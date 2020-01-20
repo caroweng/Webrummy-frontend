@@ -25,22 +25,9 @@
             callRummyController: function (param) {
                 this.$socket.send(JSON.stringify({action: "callRummyController", param: param}));
             },
-            getCurrentPlayer: function() {
-                // console.log(this.desk)
-                // let currentPlayer = this.desk.players.find(player => player.state.toString() === "TURN");
-                // return currentPlayer.name;
-            }
         },
         created() {
-            // this.$options.sockets.onmessage = (message) => {
-            //     if (typeof message.data === "string") {
-            //         this.desk = JSON.parse(message.data).desk;
-            console.log(this.desk)
-                    this.currentPlayer = this.desk.players.find(player => player.state.toString() === "TURN");
-                // }
-                // console.log(this.$socket.readyState)
-            // };
-            // this.$socket.send(JSON.stringify({action: 'getGame'}))
+            this.currentPlayer = this.desk.players.find(player => player.state.toString() === "TURN");
         },
     };
 

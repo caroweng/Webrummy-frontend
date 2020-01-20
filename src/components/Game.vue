@@ -27,11 +27,6 @@
                 players: []
             }
         },
-        methods: {
-            callRummyController: function (param) {
-                this.$socket.send(JSON.stringify({action: "callRummyController", param: param}));
-            }
-        },
     };
 
 </script>

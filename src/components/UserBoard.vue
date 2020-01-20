@@ -16,7 +16,7 @@
             desk: {
                 sets: [],
                 players: []
-            }
+            },
         },
         data () {
             return {
@@ -24,8 +24,7 @@
             }
         },
         created() {
-            let currentPlayer= this.desk.players.find(player => player.state.toString() === "TURN");
-            this.viewOfBoard = currentPlayer.board.sort(this.compareTiles)
+            this.setViewOfBoard()
         },
         methods: {
             callRummyController: function (param) {
@@ -37,9 +36,17 @@
                 return 0;
             },
             getId: function (tile) {
-                console.log(tile)
                 let id = tile.value.toString() + tile.color.toString().charAt(0).toString() + tile.ident.toString();
                 return id;
+            },
+            setViewOfBoard() {
+                let currentPlayer= this.desk.players.find(player => player.state.toString() === "TURN");
+                this.viewOfBoard = currentPlayer.board.sort(this.compareTiles)
+            }
+        },
+        watch: {
+            desk: function(newVal, oldVal) { // watch it
+                this.setViewOfBoard()
             }
         }
     };

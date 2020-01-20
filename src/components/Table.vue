@@ -29,7 +29,6 @@
                 this.$socket.send(JSON.stringify({action: "callRummyController", param: param}));
             },
             getId: function (tile) {
-                console.log(tile);
                 let id = tile.value.toString() + tile.color.toString().charAt(0).toString() + tile.ident.toString();
                 return id;
             }
