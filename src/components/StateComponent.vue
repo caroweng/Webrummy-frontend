@@ -28,6 +28,9 @@
             PlayerFinished
         },
         methods: {
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
 
         },
         data () {
@@ -39,7 +42,9 @@
                 state: {}
             }
         },
-        created() {
+       async created() {
+            await this.sleep(500);
+
             this.$options.sockets.onmessage = (message) => {
                 if (typeof message.data === "string") {
                     this.desk = JSON.parse(message.data).desk;
