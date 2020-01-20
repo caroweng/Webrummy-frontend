@@ -19,7 +19,7 @@ Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
 Vue.use(VueRouter);
-Vue.use(VueNativeSock, 'ws://localhost:9000/socket', {
+Vue.use(VueNativeSock, 'ws://webrummy-server.herokuapp.com/socket', {
   reconnection: true, // (Boolean) whether to reconnect automatically (false)
   reconnectionAttempts: 20, // (Number) number of reconnection attempts before giving up (Infinity),
   reconnectionDelay: 1000, // (Number) how long to initially wait before attempting a new (1000)
@@ -45,14 +45,14 @@ new Vue({
   store
 }).$mount('#app');
 
-const firebaseConfig = {
-  apiKey: "AIzaSyANMAoY-smVMDj5AJJGJYMD6_97FdmEtWM",
-  authDomain: "htwg-webtech-rummy.firebaseapp.com",
-  databaseURL: "https://htwg-webtech-rummy.firebaseio.com",
-  projectId: "htwg-webtech-rummy",
-  storageBucket: "htwg-webtech-rummy.appspot.com",
-  messagingSenderId: "206658326580",
-  appId: "1:206658326580:web:4e6a7faf153d80f0243a61"
+var firebaseConfig = {
+  apiKey: "AIzaSyDGbhXb-zbHhsjz2h-6hxhkYJrPjaJr7Vg",
+  authDomain: "webtech-rummy.firebaseapp.com",
+  databaseURL: "https://webtech-rummy.firebaseio.com",
+  projectId: "webtech-rummy",
+  storageBucket: "webtech-rummy.appspot.com",
+  messagingSenderId: "652916636997",
+  appId: "1:652916636997:web:71b240381086c0963cd22c"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
