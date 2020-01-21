@@ -19,7 +19,7 @@ Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
 Vue.use(VueRouter);
-Vue.use(VueNativeSock, 'ws://webrummy-server.herokuapp.com/socket', {
+Vue.use(VueNativeSock, 'wss://webrummy-server.herokuapp.com/socket', {
   reconnection: true, // (Boolean) whether to reconnect automatically (false)
   reconnectionAttempts: 20, // (Number) number of reconnection attempts before giving up (Infinity),
   reconnectionDelay: 1000, // (Number) how long to initially wait before attempting a new (1000)

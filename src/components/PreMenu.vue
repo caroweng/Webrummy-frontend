@@ -13,8 +13,6 @@
                 Sign up
             </button>
         </router-link>
-<!--        <input type="submit" id="newGame" value="New Game" class="btn btn-light button" v-on:click="callRummyController('c')"/>-->
-<!--        <input type="submit" value="Load Game" class="btn btn-light button" v-on:click="callRummyController('l')"/>-->
     </div>
   </div>
 </template>
@@ -23,11 +21,6 @@
 
 export default {
     name: "PreMenu",
-    // methods: {
-    //     callRummyController: function (param) {
-    //         this.$socket.send(JSON.stringify({action: "callRummyController", param: param}));
-    //     }
-  // }
 };
 
 </script>

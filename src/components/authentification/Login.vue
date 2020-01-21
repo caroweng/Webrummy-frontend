@@ -41,8 +41,13 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-5">
-                                    <button type="submit" class="btn button m-2" v-on:click="resetPassword()">Forgot Password</button>
+                                <div class="col-md-12  offset-md-4">
+                                    <router-link to="/register">
+                                        <button type="button" class="btn button">
+                                            Sign up
+                                        </button>
+                                    </router-link>
+                                    <button type="submit" class="btn button " v-on:click="resetPassword()">Forgot Password</button>
                                     <button type="submit" class="btn button ">Sign in</button>
                                 </div>
                             </div>
