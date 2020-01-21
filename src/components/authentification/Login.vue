@@ -47,7 +47,8 @@
                                             Sign up
                                         </button>
                                     </router-link>
-                                    <button type="submit" class="btn button " v-on:click="resetPassword()">Forgot Password</button>
+                                    <button type="button" class="btn button " v-on:click="resetPassword()">Forgot Password</button>
+                                    <button type="button" class="btn button " v-on:click="useGoogle()">Sign in with Google</button>
                                     <button type="submit" class="btn button ">Sign in</button>
                                 </div>
                             </div>
@@ -88,6 +89,22 @@
                         window.console.log(err);
                         this.error.success = false;
                         this.error.message = err.message;
+                    });
+            },
+            useGoogle() {
+                const mythis = this;
+                const provider = new firebase.auth.GoogleAuthProvider();
+                // eslint-disable-next-line no-unused-vars
+                firebase
+                    .auth()
+                    .signInWithPopup(provider)
+                    .then(result => {
+                        this.$router.replace({name: "Dashboard"});
+                        mythis.error.success = true;
+                        mythis.error.message = "Signed in with Google";
+                    }).catch(function(error) {
+                        mythis.error.message = error.message;
+                        mythis.error.success = false;
                     });
             },
             resetPassword() {
