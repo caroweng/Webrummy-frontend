@@ -100,6 +100,17 @@ a {
     margin-left: 5px !important;
 }
 
+.buttonLogin {
+    background-color: #d97397 !important;
+    color: white !important;
+    margin-right: 5px !important;
+}
+
+.pwLink {
+    margin-left:auto !important;
+    margin-right:80px !important;
+}
+
 .alreadyAddedPlayers {
     font-family: "Lucida Grande", Helvetica, sans-serif !important;
 }

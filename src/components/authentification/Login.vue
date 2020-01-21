@@ -43,14 +43,18 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-12  offset-md-4">
                                     <router-link to="/register">
-                                        <button type="button" class="btn button">
+                                        <button type="button" class="btn buttonLogin">
                                             Sign up
                                         </button>
                                     </router-link>
-                                    <button type="button" class="btn button " v-on:click="resetPassword()">Forgot Password</button>
-                                    <button type="button" class="btn button " v-on:click="useGoogle()">Sign in with Google</button>
-                                    <button type="submit" class="btn button ">Sign in</button>
+                                    <button type="button" class="btn buttonLogin " v-on:click="useGoogle()">Sign in with Google</button>
+                                    <button type="submit" class="btn buttonLogin">Sign in</button>
                                 </div>
+                                <a type="submit" class="m-4 pwLink" v-on:click="resetPassword()">
+                                    <u>
+                                        Forgot Password
+                                    </u>
+                                </a>
                             </div>
                         </form>
                     </div>
