@@ -14,7 +14,7 @@
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.4.3",
     "eslint-loader": "^2.1.2",
-    "firebase": "7.6.2",
+    "firebase": "10.9.0",
     "glyphicons": "^0.2.0",
     "jquery": "^3.4.1",
     "register-service-worker": "^1.6.2",
